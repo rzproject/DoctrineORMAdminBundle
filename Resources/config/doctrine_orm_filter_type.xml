@@ -16,4 +16,3 @@
         <parameter key="rz_doctrine_orm_admin.filter.type.string.class">Rz\DoctrineORMAdminBundle\Filter\StringFilter</parameter>
     </parameters>
 </container>
-

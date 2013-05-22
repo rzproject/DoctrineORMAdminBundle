@@ -1,7 +1,6 @@
 <?php
 namespace Rz\DoctrineORMAdminBundle\Filter;
 use Sonata\DoctrineORMAdminBundle\Filter\BooleanFilter as BaseBooleanFilter;
-use Sonata\AdminBundle\Form\Type\BooleanType;
 
 class BooleanFilter extends BaseBooleanFilter
 {

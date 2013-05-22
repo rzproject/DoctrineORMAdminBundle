@@ -4,11 +4,9 @@ namespace Rz\DoctrineORMAdminBundle\Filter;
 use Sonata\DoctrineORMAdminBundle\Filter\StringFilter as BaseStringFilter;
 
 use Sonata\AdminBundle\Form\Type\Filter\ChoiceType;
-use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 
 class StringFilter extends BaseStringFilter
 {
-
 
     /**
      * @param string $type

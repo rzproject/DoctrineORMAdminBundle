@@ -2,7 +2,6 @@
 
 namespace Rz\DoctrineORMAdminBundle\DependencyInjection;
 
-
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
@@ -22,6 +21,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('rz_doctrine_orm_admin');
         $this->addAdminTemplates($rootNode);
+
         return $treeBuilder;
     }
 

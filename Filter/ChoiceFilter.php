@@ -3,7 +3,6 @@
 namespace Rz\DoctrineORMAdminBundle\Filter;
 
 use Sonata\DoctrineORMAdminBundle\Filter\ChoiceFilter as BaseChoiceFilter;
-use Doctrine\ORM\QueryBuilder;
 use Sonata\AdminBundle\Form\Type\Filter\ChoiceType;
 
 class ChoiceFilter extends BaseChoiceFilter
