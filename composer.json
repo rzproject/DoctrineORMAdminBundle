@@ -14,7 +14,8 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "rmzamora/doctrine-orm-admin-bundle": "2.2.*@dev"
+        "rmzamora/doctrine-orm-admin-bundle": "2.2.*@dev",
+        "rz/admin-bundle": ">=2.2.2"
     },
     "autoload": {
         "psr-0": { "Rz\\DoctrineORMAdminBundle": "" }
