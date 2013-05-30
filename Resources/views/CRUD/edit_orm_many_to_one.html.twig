@@ -12,7 +12,8 @@
             {% set attr_new = rz_replace_span_class(attr) %}
             {% if sonata_admin.edit == 'list' %}
                 <div id="field_widget_{{ id }}" class="span12 field-short-description dummy-text-container">
-                    {% if sonata_admin.admin.id(sonata_admin.value) %}
+                    {# TODO: find error #}
+                    {% if sonata_admin.value and sonata_admin.admin.id(sonata_admin.value) %}
                         {% render url('sonata_admin_short_object_information',{
                                 'code':     sonata_admin.field_description.associationadmin.code,
                                 'objectId': sonata_admin.field_description.associationadmin.id(sonata_admin.value),
