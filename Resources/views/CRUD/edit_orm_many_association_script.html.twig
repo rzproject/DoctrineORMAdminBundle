@@ -337,7 +337,7 @@
     function initialize_popup_{{ id }}() {
         {# initialize component #}
         if (!field_dialog_{{ id }}) {
-            var div = "<div class='modal hide fade' data-backdrop='static' id='field_dialog_{{ id }}' aria-hidden='false'></div>";
+            var div = "<div class='rz-cms modal hide fade' data-backdrop='static' id='field_dialog_{{ id }}' aria-hidden='false'></div>";
             field_dialog_{{ id }} = jQuery(div);
             {# move the dialog as a child of the root element, nested form breaks html ... #}
             jQuery(document.body).append(field_dialog_{{ id }});
