@@ -40,7 +40,7 @@
                         console.log('field_dialog_form_list_link_');
                         {# capture the submit event to make an ajax call, ie : POST data to the
                            related create admin #}
-                        jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"], ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a', field_dialog_{{ id }}).on('click', field_dialog_form_list_link_{{ id }});
+                        jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"], [class*="fileupload-exists"], ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a', field_dialog_{{ id }}).on('click', field_dialog_form_list_link_{{ id }});
                         jQuery('form, a:not([class*="rz-admin-filter-reset-button"])', field_dialog_{{ id }}).on('submit', field_dialog_form_list_filter_{{ id }});
                     })
                     .fail(function(jqXHR, textStatus, errorThrown){
@@ -83,7 +83,7 @@
                 {# capture the submit event to make an ajax call, ie : POST data to the
                    related create admin #}
                 console.log('field_dialog_form_list_filter_');
-                jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"], ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a', field_dialog_{{ id }}).on('click', field_dialog_form_list_link_{{ id }});
+                jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"], [class*="fileupload-exists"], ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a', field_dialog_{{ id }}).on('click', field_dialog_form_list_link_{{ id }});
                 jQuery('form, a:not([class*="rz-admin-filter-reset-button"])', field_dialog_{{ id }}).on('submit', field_dialog_form_list_filter_{{ id }});
             }
         });
@@ -118,7 +118,7 @@
             field_dialog_{{ id }}.html(html);
             {# capture the submit event to make an ajax call, ie : POST data to the
                related create admin #}
-            jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"],  ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a', field_dialog_{{ id }}).on('click', field_dialog_form_list_link_{{ id }});
+            jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"],  [class*="fileupload-exists"],  ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a', field_dialog_{{ id }}).on('click', field_dialog_form_list_link_{{ id }});
             jQuery('form, a:not([class*="rz-admin-filter-reset-button"])', field_dialog_{{ id }}).on('submit', field_dialog_form_list_filter_{{ id }});
 
             {# open the dialog in modal mode #}
@@ -131,7 +131,7 @@
                 } else {
                     Admin.log('[{{ id }}|field_dialog_form_add] modal hidden - removing `on` events');
                     {# make sure we have a clean state #}
-                    jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"], ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a', jQuery(this)).off('click');
+                    jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"],  [class*="fileupload-exists"], ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a', jQuery(this)).off('click');
                     jQuery('form, a:not([class*="rz-admin-filter-reset-button"])', jQuery(this)).off('submit');
                     jQuery(this).empty();
                     field_dialog_{{ id }} = null;
@@ -179,7 +179,7 @@
                         Admin.log('[{{ id }}|field_dialog_form_add] ajax done', field_dialog_{{ id }});
                         {# populate the popup container #}
                         field_dialog_{{ id }}.html(html);
-                        jQuery('a:not([data-toggle="tab"],[data-toggle="pill"])', field_dialog_{{ id }}).on('click', field_dialog_form_action_{{ id }});
+                        jQuery('a:not([data-toggle="tab"],[data-toggle="pill"],[class*="fileupload-exists"])', field_dialog_{{ id }}).on('click', field_dialog_form_action_{{ id }});
                         jQuery('form', field_dialog_{{ id }}).on('submit', field_dialog_form_action_{{ id }});
 
                         {# open the dialog in modal mode #}
@@ -190,7 +190,7 @@
                         field_dialog_{{ id }}.on('hidden', function () {
                             Admin.log('[{{ id }}|field_dialog_form_add] modal hidden - removing `on` events');
                             {# make sure we have a clean state #}
-                            jQuery('a:not([data-toggle="tab"],[data-toggle="pill"])', jQuery(this)).off('click');
+                            jQuery('a:not([data-toggle="tab"],[data-toggle="pill"],[class*="fileupload-exists"])', jQuery(this)).off('click');
                             jQuery('form', jQuery(this)).off('submit');
                             jQuery(this).empty();
                             field_dialog_{{ id }} = null;
@@ -264,7 +264,7 @@
                     field_dialog_{{ id }}.html(data);
                     {# reattach the event #}
                     console.log('field_dialog_form_action_');
-                    jQuery('a:not([data-toggle="tab"],[data-toggle="pill"])', field_dialog_{{ id }}).on('click', field_dialog_form_action_{{ id }});
+                    jQuery('a:not([data-toggle="tab"],[data-toggle="pill"],[class*="fileupload-exists"])', field_dialog_{{ id }}).on('click', field_dialog_form_action_{{ id }});
                     jQuery('form', field_dialog_{{ id }}).on('submit', field_dialog_form_action_{{ id }});
                     Admin.initElements(jQuery(field_dialog_{{ id }}));
                     return;
@@ -325,7 +325,7 @@
 
 
                 {# reattach the event #}
-                jQuery('a:not([data-toggle="tab"],[data-toggle="pill"])', field_dialog_{{ id }}).on('click', field_dialog_form_action_{{ id }});
+                jQuery('a:not([data-toggle="tab"],[data-toggle="pill"],[class*="fileupload-exists"])', field_dialog_{{ id }}).on('click', field_dialog_form_action_{{ id }});
                 jQuery('form', field_dialog_{{ id }}).on('submit', field_dialog_form_action_{{ id }});
                 Admin.initElements(jQuery(field_dialog_{{ id }}));
             }
