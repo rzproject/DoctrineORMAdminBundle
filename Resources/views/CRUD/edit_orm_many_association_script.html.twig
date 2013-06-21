@@ -23,6 +23,8 @@
 
         var element = jQuery(this).parents('#field_dialog_{{ id }} .sonata-ba-list-field');
 
+        console.log( jQuery(this).attr('href'));
+
         // the user does click on a row column
         if (element.length == 0) {
             // make a recursive call (ie: reset the filter)
@@ -38,7 +40,7 @@
                         console.log('field_dialog_form_list_link_');
                         {# capture the submit event to make an ajax call, ie : POST data to the
                            related create admin #}
-                        jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"]), a[class*="rz-admin-filter-reset-button"]', field_dialog_{{ id }}).on('click', field_dialog_form_list_link_{{ id }});
+                        jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"], ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a', field_dialog_{{ id }}).on('click', field_dialog_form_list_link_{{ id }});
                         jQuery('form, a:not([class*="rz-admin-filter-reset-button"])', field_dialog_{{ id }}).on('submit', field_dialog_form_list_filter_{{ id }});
                     })
                     .fail(function(jqXHR, textStatus, errorThrown){
@@ -81,7 +83,7 @@
                 {# capture the submit event to make an ajax call, ie : POST data to the
                    related create admin #}
                 console.log('field_dialog_form_list_filter_');
-                jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"]), a[class*="rz-admin-filter-reset-button"]', field_dialog_{{ id }}).on('click', field_dialog_form_list_link_{{ id }});
+                jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"], ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a', field_dialog_{{ id }}).on('click', field_dialog_form_list_link_{{ id }});
                 jQuery('form, a:not([class*="rz-admin-filter-reset-button"])', field_dialog_{{ id }}).on('submit', field_dialog_form_list_filter_{{ id }});
             }
         });
@@ -116,7 +118,7 @@
             field_dialog_{{ id }}.html(html);
             {# capture the submit event to make an ajax call, ie : POST data to the
                related create admin #}
-            jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"]), a[class*="rz-admin-filter-reset-button"]', field_dialog_{{ id }}).on('click', field_dialog_form_list_link_{{ id }});
+            jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"],  ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a', field_dialog_{{ id }}).on('click', field_dialog_form_list_link_{{ id }});
             jQuery('form, a:not([class*="rz-admin-filter-reset-button"])', field_dialog_{{ id }}).on('submit', field_dialog_form_list_filter_{{ id }});
 
             {# open the dialog in modal mode #}
@@ -129,7 +131,7 @@
                 } else {
                     Admin.log('[{{ id }}|field_dialog_form_add] modal hidden - removing `on` events');
                     {# make sure we have a clean state #}
-                    jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"]), a[class*="rz-admin-filter-reset-button"]', jQuery(this)).off('click');
+                    jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"], ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a', jQuery(this)).off('click');
                     jQuery('form, a:not([class*="rz-admin-filter-reset-button"])', jQuery(this)).off('submit');
                     jQuery(this).empty();
                     field_dialog_{{ id }} = null;
