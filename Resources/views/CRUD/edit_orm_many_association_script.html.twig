@@ -200,7 +200,7 @@
                         field_dialog_{{ id }}.on('shown', function () {
                             {# capture the submit event to make an ajax call, ie : POST data to the
                                 related create admin #}
-                            console.log('field_dialog_form_add_');
+                            console.log('here');
                             Admin.initElements(jQuery(this));
                         });
                     })
@@ -328,6 +328,15 @@
                 jQuery('a:not([data-toggle="tab"],[data-toggle="pill"],[class*="fileupload-exists"])', field_dialog_{{ id }}).on('click', field_dialog_form_action_{{ id }});
                 jQuery('form', field_dialog_{{ id }}).on('submit', field_dialog_form_action_{{ id }});
                 Admin.initElements(jQuery(field_dialog_{{ id }}));
+            },
+            error: function(html) {
+                field_dialog_{{ id }}.html(html.responseText);
+                {# reattach the event #}
+                console.log('field_dialog_form_action_');
+                jQuery('a:not([data-toggle="tab"],[data-toggle="pill"],[class*="fileupload-exists"])', field_dialog_{{ id }}).on('click', field_dialog_form_action_{{ id }});
+                jQuery('form', field_dialog_{{ id }}).on('submit', field_dialog_form_action_{{ id }});
+                Admin.initElements(jQuery(field_dialog_{{ id }}));
+                return false;
             }
         });
 
