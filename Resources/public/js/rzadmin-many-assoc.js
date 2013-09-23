@@ -240,7 +240,7 @@ rzadmin_many_assoc.prototype = {
      */
     startFieldDialogFormAdd: function(link) {
 
-        /* remove the html event */
+        /* remove thstartFieldDialogFormAdde html event */
         link.onclick = null;
 
         this.initializePopup();

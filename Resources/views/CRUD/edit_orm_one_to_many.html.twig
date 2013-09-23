@@ -3,7 +3,6 @@
         {{ element|render_relation_element(sonata_admin.field_description) }}
     {% endfor %}
 {% else %}
-    <h1>one to many</h1>
     {%   set container_span = attr|rz_get_span_class %}
     <div id="field_container_{{ id }}" class="field-container">
         <div id="field_widget_{{ id }}" class="row-fluid rz-widget-container-one-to-many">
@@ -115,11 +114,15 @@
         </div>
 
         {% if sonata_admin.edit == 'inline' %}
+
+            {# include association code #}
+            {% include 'RzDoctrineORMAdminBundle:CRUD:edit_orm_one_association_script.html.twig' %}
+
             {% if sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') %}
                 <span id="field_actions_{{ id }}" >
                     <a
                         href="{{ sonata_admin.field_description.associationadmin.generateUrl('create') }}"
-                        onclick="return start_field_retrieve_{{ id }}(this);"
+                        onclick="return otom_{{ id }}.startFieldRetrieve(this);"
                         class="btn btn-success sonata-ba-action"
                         title="{{ 'link_add'|trans({}, 'SonataAdminBundle') }}"
                         >
@@ -140,15 +143,13 @@
                     );
                 </script>
             {% endif %}
-            {# include association code #}
-            {% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_one_association_script.html.twig' %}
-
         {% else %}
+            {% include 'RzDoctrineORMAdminBundle:CRUD:edit_orm_many_association_script.html.twig' %}
             <span id="field_actions_{{ id }}" >
                 {% if sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') %}
                     <a
                         href="{{ sonata_admin.field_description.associationadmin.generateUrl('create') }}"
-                        onclick="return start_field_dialog_form_add_{{ id }}(this);"
+                        onclick="return mtom_{{ id }}.startFieldDialogFormAdd(this);"
                         class="btn sonata-ba-action btn-primary"
                         title="{{ 'link_add'|trans({}, 'SonataAdminBundle') }}"
                         >
@@ -157,7 +158,6 @@
                     </a>
                 {% endif %}
             </span>
-            {% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_association_script.html.twig' %}
         {% endif %}
     </div>
 {% endif %}

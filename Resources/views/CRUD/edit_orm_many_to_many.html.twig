@@ -1,5 +1,4 @@
 {% if sonata_admin.field_description.associationadmin %}
-    <h1>many to many</h1>
     {%   set container_span = attr|rz_get_span_class %}
     {% include 'RzDoctrineORMAdminBundle:CRUD:edit_orm_many_association_script.html.twig' %}
     <div id="field_container_{{ id }}" class="field-container">
