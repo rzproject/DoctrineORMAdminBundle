@@ -423,16 +423,16 @@ rzadmin_many_assoc.prototype = {
     attachListeners: function() {
         var self = this;
 
+        console.log(self.id);
+
         if (self.sonata_admin_edit == 'list') {
             // update the label
             jQuery(sprintf('#%s',self.id)).on('change', function(event) {
-
                 self.admin.log(sprintf('[%s] update the label', self.id));
-
                 jQuery(sprintf('#%s', self.field_widget)).html(sprintf("<span><img src=\"%s\" style=\"vertical-align: middle; margin-right: 10px\"/>%s</span>",self.url_ajax_loading,self.ajax_loading_description));
                 jQuery.ajax({
                     type: 'GET',
-                    url:self.url_sonata_admin_short_object_information.replace('OBJECT_ID', jQuery(this).val()),
+                    url: self.url_sonata_admin_short_object_information.replace('OBJECT_ID', jQuery(this).val()),
                     success: function(html) {
                         jQuery(sprintf('#%s',self.field_widget)).html(html);
                     }

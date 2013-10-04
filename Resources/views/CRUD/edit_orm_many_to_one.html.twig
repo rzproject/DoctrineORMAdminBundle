@@ -38,7 +38,7 @@
                 <span id="field_actions_{{ id }}" class="field-actions">
                     <span class="btn-group">
                         {% if sonata_admin.edit == 'list' and sonata_admin.field_description.associationadmin.hasRoute('list') and sonata_admin.field_description.associationadmin.isGranted('LIST') %}
-                            <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('list') }}"
+                            <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('list', sonata_admin.field_description.getOption('link_parameters', {})) }}"
                                 onclick="return mtom_{{ id }}.startFieldDialogFormList(this);"
                                 class="btn sonata-ba-action btn-success"
                                 title="{{ 'link_list'|trans({}, 'SonataAdminBundle') }}"
@@ -50,7 +50,7 @@
                         {% endif %}
 
                         {% if sonata_admin.edit != 'admin' and sonata_admin.field_description.associationadmin.hasRoute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') %}
-                            <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('create') }}"
+                            <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('create', sonata_admin.field_description.getOption('link_parameters', {})) }}"
                                 onclick="return mtom_{{ id }}.startFieldDialogFormAdd(this);"
                                 class="btn sonata-ba-action btn-success"
                                 title="{{ 'link_add'|trans({}, 'SonataAdminBundle') }}"

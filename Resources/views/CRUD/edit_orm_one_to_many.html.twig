@@ -121,7 +121,7 @@
             {% if sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') %}
                 <span id="field_actions_{{ id }}" >
                     <a
-                        href="{{ sonata_admin.field_description.associationadmin.generateUrl('create') }}"
+                        href="{{ sonata_admin.field_description.associationadmin.generateUrl('create', sonata_admin.field_description.getOption('link_parameters', {})) }}"
                         onclick="return otom_{{ id }}.startFieldRetrieve(this);"
                         class="btn btn-success sonata-ba-action"
                         title="{{ 'link_add'|trans({}, 'SonataAdminBundle') }}"
@@ -148,7 +148,7 @@
             <span id="field_actions_{{ id }}" >
                 {% if sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') %}
                     <a
-                        href="{{ sonata_admin.field_description.associationadmin.generateUrl('create') }}"
+                        href="{{ sonata_admin.field_description.associationadmin.generateUrl('create', sonata_admin.field_description.getOption('link_parameters', {})) }}"
                         onclick="return mtom_{{ id }}.startFieldDialogFormAdd(this);"
                         class="btn sonata-ba-action btn-primary"
                         title="{{ 'link_add'|trans({}, 'SonataAdminBundle') }}"

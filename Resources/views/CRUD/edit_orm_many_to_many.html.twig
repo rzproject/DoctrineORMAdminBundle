@@ -14,7 +14,7 @@
                     <div class="span12">
                     {% if sonata_admin.field_description.associationadmin.hasRoute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') %}
                         <a
-                            href="{{ sonata_admin.field_description.associationadmin.generateUrl('create') }}"
+                            href="{{ sonata_admin.field_description.associationadmin.generateUrl('create', sonata_admin.field_description.getOption('link_parameters', {})) }}"
                             onclick="return mtom_{{ id }}.startFieldDialogFormAdd(this);"
                             class="btn sonata-ba-action btn-success"
                             title="{{ 'link_add'|trans({}, 'SonataAdminBundle') }}"
