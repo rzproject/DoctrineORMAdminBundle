@@ -49,7 +49,7 @@
             {% set container_span = attr|rz_get_span_class %}
             <div {% if container_span is not null %} class="{{ container_span }}"{% endif %}>
                 <div class="row-fluid">
-                    <div id="field_widget_{{ id }}" class="span12 field-short-description dummy-text-container">
+                    <div id="field_widget_{{ id }}" class="span12 field-short-description dummy-text-container" data-rel-input-id="{{ id }}">
                         {% if sonata_admin.field_description.associationadmin.id(sonata_admin.value) %}
                             {% render url('sonata_admin_short_object_information',{
                             'code':     sonata_admin.field_description.associationadmin.code,
@@ -86,10 +86,11 @@
                                 </a>
                             {% endif %}
                             {% if sonata_admin.field_description.associationadmin.hasRoute('delete') and sonata_admin.field_description.associationadmin.isGranted('DELETE') %}
-                                <a  href=""
+                                <a  href="#"
                                     onclick="return mtom_{{ id }}.removeSelectedElement(this);"
                                     class="btn sonata-ba-action btn-success"
                                     title="{{ 'link_delete'|trans({}, 'SonataAdminBundle') }}"
+                                    data-ref-id="{{ id }}"
                                         >
                                     <i class="icon-trash"></i>
                                     <span class="hidden-phone hidden-tablet visible-desktop"> {{ 'link_delete'|trans({}, 'SonataAdminBundle') }}</span>

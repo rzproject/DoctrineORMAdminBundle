@@ -377,6 +377,8 @@ rzadmin_many_assoc.prototype = {
 
     startFieldDialogFormList: function(link) {
 
+        this.admin.log(sprintf('[%s] startFieldDialogFormList', this));
+
         link.onclick = null;
 
        this.initializePopup();
@@ -409,7 +411,6 @@ rzadmin_many_assoc.prototype = {
         if (jQuery(sprintf('#%s option',self.id)).get(0)) {
             jQuery(sprintf('#%s',self.id)).attr('selectedIndex', '-1').children("option:selected").attr("selected", false);
         }
-
         jQuery(sprintf('#%s',self.id)).val('');
         jQuery(sprintf('#%s',self.id)).trigger('change');
 
@@ -417,26 +418,30 @@ rzadmin_many_assoc.prototype = {
     },
 
     /*
-      attach onchange event on the input
-    */
+     * attach onchange event on the input refactored will be removed from
+     */
 
     attachListeners: function() {
         var self = this;
 
-        console.log(self.id);
+        self.admin.log(sprintf('[%s] attachListeners', self.id));
 
         if (self.sonata_admin_edit == 'list') {
             // update the label
             jQuery(sprintf('#%s',self.id)).on('change', function(event) {
                 self.admin.log(sprintf('[%s] update the label', self.id));
-                jQuery(sprintf('#%s', self.field_widget)).html(sprintf("<span><img src=\"%s\" style=\"vertical-align: middle; margin-right: 10px\"/>%s</span>",self.url_ajax_loading,self.ajax_loading_description));
-                jQuery.ajax({
-                    type: 'GET',
-                    url: self.url_sonata_admin_short_object_information.replace('OBJECT_ID', jQuery(this).val()),
-                    success: function(html) {
-                        jQuery(sprintf('#%s',self.field_widget)).html(html);
-                    }
-                });
+                if(jQuery(this).val() !== '') {
+                    jQuery(sprintf('#%s', self.field_widget)).html(sprintf("<span><img src=\"%s\" style=\"vertical-align: middle; margin-right: 10px\"/>%s</span>",self.url_ajax_loading,self.ajax_loading_description));
+                    jQuery.ajax({
+                        type: 'GET',
+                        url: self.url_sonata_admin_short_object_information.replace('OBJECT_ID', jQuery(this).val()),
+                        success: function(html) {
+                            jQuery(sprintf('#%s',self.field_widget)).html(html);
+                        }
+                    });
+                } else {
+                    jQuery(sprintf('#%s',self.field_widget)).html('');
+                }
             });
         }
     }
