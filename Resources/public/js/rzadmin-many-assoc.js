@@ -22,7 +22,7 @@ rzadmin_many_assoc.prototype = {
 
     initializePopup: function() {
         if (!this.field_dialog) {
-           var div = sprintf("<div class='rz-modal modal hide fade' data-backdrop='static' id='%s' aria-hidden='false'></div>",this.field_widget);
+           var div = sprintf("<div class='rzcms rz-cms-admin modal hide fade' data-backdrop='static' id='%s' aria-hidden='false'></div>",this.field_widget);
            this.field_dialog = jQuery(div);
            // move the dialog as a child of the root element, nested form breaks html ...
            jQuery(document.body).append(self.field_dialog);

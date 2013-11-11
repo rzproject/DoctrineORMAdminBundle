@@ -53,7 +53,7 @@ rzadmin_one_assoc.prototype = {
     startFieldRetrieve: function(link) {
 
         link.onclick = null;
-        var div = sprintf("<div class='rz-modal modal hide fade' data-backdrop='static' id='%s' aria-hidden='false'></div>",this.field_widget);
+        var div = sprintf("<div class='rzcms rz-cms-admin modal hide fade' data-backdrop='static' id='%s' aria-hidden='false'></div>",this.field_widget);
         // initialize component
         this.field_dialog = jQuery(div);
 
