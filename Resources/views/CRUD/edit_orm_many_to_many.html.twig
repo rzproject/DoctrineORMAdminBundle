@@ -12,7 +12,7 @@
                 </div>
                 <div id="field_actions_{{ id }}" class="row-fluid field-actions">
                     <div class="span12">
-                    {% if sonata_admin.field_description.associationadmin.hasRoute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') %}
+                    {% if sonata_admin.field_description.associationadmin.hasRoute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') and btn_add %}
                         <a
                             href="{{ sonata_admin.field_description.associationadmin.generateUrl('create', sonata_admin.field_description.getOption('link_parameters', {})) }}"
                             onclick="return mtom_{{ id }}.startFieldDialogFormAdd(this);"

@@ -118,7 +118,7 @@
             {# include association code #}
             {% include 'RzDoctrineORMAdminBundle:CRUD:edit_orm_one_association_script.html.twig' %}
 
-            {% if sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') %}
+            {% if sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') and btn_add %}
                 <span id="field_actions_{{ id }}" >
                     <a
                         href="{{ sonata_admin.field_description.associationadmin.generateUrl('create', sonata_admin.field_description.getOption('link_parameters', {})) }}"
@@ -146,7 +146,7 @@
         {% else %}
             {% include 'RzDoctrineORMAdminBundle:CRUD:edit_orm_many_association_script.html.twig' %}
             <span id="field_actions_{{ id }}" >
-                {% if sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') %}
+                {% if sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') and btn_add %}
                     <a
                         href="{{ sonata_admin.field_description.associationadmin.generateUrl('create', sonata_admin.field_description.getOption('link_parameters', {})) }}"
                         onclick="return mtom_{{ id }}.startFieldDialogFormAdd(this);"

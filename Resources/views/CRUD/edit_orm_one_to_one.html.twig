@@ -30,7 +30,7 @@
 
         <span id="field_actions_{{ id }}" class="field-actions">
             <span class="btn-group">
-                {% if sonata_admin.edit == 'list' and sonata_admin.field_description.associationadmin.hasroute('list') and sonata_admin.field_description.associationadmin.isGranted('LIST') %}
+                {% if sonata_admin.edit == 'list' and sonata_admin.field_description.associationadmin.hasroute('list') and sonata_admin.field_description.associationadmin.isGranted('LIST') and btn_delete %}
                     <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('list', sonata_admin.field_description.getOption('link_parameters', {})) }}"
                         onclick="return mtom_{{ id }}.startFieldDialogFormList(this);"
                         class="btn sonata-ba-action"
@@ -41,7 +41,7 @@
                     </a>
                 {% endif %}
 
-                {% if sonata_admin.edit != 'admin' and sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') %}
+                {% if sonata_admin.edit != 'admin' and sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') and btn_add %}
                     <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('create', sonata_admin.field_description.getOption('link_parameters', {})) }}"
                         onclick="return mtom_{{ id }}.startFieldDialogFormAdd(this);"
                         class="btn sonata-ba-action"
@@ -53,7 +53,7 @@
                 {% endif %}
             </span>
 
-            {% if sonata_admin.edit == 'list' and sonata_admin.field_description.associationadmin.hasRoute('list') and sonata_admin.field_description.associationadmin.isGranted('LIST') %}
+            {% if sonata_admin.edit == 'list' and sonata_admin.field_description.associationadmin.hasRoute('list') and sonata_admin.field_description.associationadmin.isGranted('LIST') and btn_delete %}
                 <a  href=""
                     onclick="return mtom_{{ id }}.removeSelectedElement(this);"
                     class="btn sonata-ba-action"
