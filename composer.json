@@ -14,8 +14,8 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "rmzamora/doctrine-orm-admin-bundle": "2.3.*@dev",
-        "rz/admin-bundle": "2.3.1.*@dev"
+        "rmzamora/doctrine-orm-admin-bundle": "~1.0",
+        "rz/admin-bundle": "~1.0"
     },
     "autoload": {
         "psr-0": { "Rz\\DoctrineORMAdminBundle": "" }
@@ -23,7 +23,7 @@
     "target-dir": "Rz/DoctrineORMAdminBundle",
     "extra": {
         "branch-alias": {
-            "dev-master": "2.3.x-dev"
+            "dev-master": "1.0.x-dev"
         }
     }
 }
