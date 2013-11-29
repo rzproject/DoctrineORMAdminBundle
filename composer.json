@@ -23,7 +23,7 @@
     "target-dir": "Rz/DoctrineORMAdminBundle",
     "extra": {
         "branch-alias": {
-            "dev-2.2": "2.3.1.x-dev"
+            "dev-2.3.1": "2.3.1.x-dev"
         }
     }
 }
