@@ -6,6 +6,7 @@
         {{ form_row(form.children[field_description.name]) }}
     {% endfor %}
 {% else %}
+    {% include 'RzDoctrineORMAdminBundle:CRUD:edit_orm_many_association_script.html.twig' %}
     <div id="field_container_{{ id }}" class="field-container">
         {% if sonata_admin.edit == 'list' %}
             <span id="field_widget_{{ id }}" class="field-short-description">
@@ -29,10 +30,9 @@
 
         <span id="field_actions_{{ id }}" class="field-actions">
             <span class="btn-group">
-                {% if sonata_admin.edit == 'list' and sonata_admin.field_description.associationadmin.hasroute('list') and sonata_admin.field_description.associationadmin.isGranted('LIST') %}
-
-                    <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('list') }}"
-                        onclick="return start_field_dialog_form_list_{{ id }}(this);"
+                {% if sonata_admin.edit == 'list' and sonata_admin.field_description.associationadmin.hasroute('list') and sonata_admin.field_description.associationadmin.isGranted('LIST') and btn_delete %}
+                    <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('list', sonata_admin.field_description.getOption('link_parameters', {})) }}"
+                        onclick="return mtom_{{ id }}.startFieldDialogFormList(this);"
                         class="btn sonata-ba-action"
                         title="{{ 'link_list'|trans({}, 'SonataAdminBundle') }}"
                         >
@@ -41,9 +41,9 @@
                     </a>
                 {% endif %}
 
-                {% if sonata_admin.edit != 'admin' and sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') %}
-                    <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('create') }}"
-                        onclick="return start_field_dialog_form_add_{{ id }}(this);"
+                {% if sonata_admin.edit != 'admin' and sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') and btn_add %}
+                    <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('create', sonata_admin.field_description.getOption('link_parameters', {})) }}"
+                        onclick="return mtom_{{ id }}.startFieldDialogFormAdd(this);"
                         class="btn sonata-ba-action"
                         title="{{ 'link_add'|trans({}, 'SonataAdminBundle') }}"
                         >
@@ -53,9 +53,9 @@
                 {% endif %}
             </span>
 
-            {% if sonata_admin.edit == 'list' and sonata_admin.field_description.associationadmin.hasRoute('list') and sonata_admin.field_description.associationadmin.isGranted('LIST') %}
+            {% if sonata_admin.edit == 'list' and sonata_admin.field_description.associationadmin.hasRoute('list') and sonata_admin.field_description.associationadmin.isGranted('LIST') and btn_delete %}
                 <a  href=""
-                    onclick="return remove_selected_element_{{ id }}(this);"
+                    onclick="return mtom_{{ id }}.removeSelectedElement(this);"
                     class="btn sonata-ba-action"
                     title="{{ 'link_delete'|trans({}, 'SonataAdminBundle') }}"
                     >
@@ -66,6 +66,4 @@
         </span>
         </div>
     </div>
-
-    {% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_association_script.html.twig' %}
 {% endif %}
