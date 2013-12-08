@@ -17,7 +17,7 @@
                             </h3>
                         </div>
                         <div class="box-content nopadding">
-                            <table class="table table-bordered table-nomargin rz-table-responsive">
+                            <table class="table table-bordered table-nomargin rz-table-responsive rz-one-to-many-table">
                                 <thead>
                                     <tr>
                                         {% for field_name, nested_field in form.children[0].children %}
@@ -34,16 +34,17 @@
                                     <tr>
                                         {% for field_name, nested_field in nested_group_field.children %}
                                             <td class="sonata-ba-td-{{ id }}-{{ field_name  }}
-                                                       {% if nested_field.vars.errors|length > 0 %} error{% endif %}
-                                                       {% if sonata_admin.field_description.associationadmin.formfielddescriptions[field_name] is not defined or
-                                                             sonata_admin.field_description.associationadmin.formfielddescriptions[field_name].type == 'boolean' %}
-                                                             sonata-one-to-many-table-boolean
-                                                       {% endif %}
-                                                       {% if sonata_admin.field_description.associationadmin.formfielddescriptions[field_name] is not defined or
-                                                             sonata_admin.field_description.associationadmin.formfielddescriptions[field_name].type == 'integer' %}
-                                                             sonata-one-to-many-table-integer
-                                                       {% endif %}
-                                                      ">
+                                               {% if nested_field.vars.errors|length > 0 %} error{% endif %}
+                                               {% if sonata_admin.field_description.associationadmin.formfielddescriptions[field_name] is not defined or
+                                                     sonata_admin.field_description.associationadmin.formfielddescriptions[field_name].type == 'boolean' %}
+                                                     sonata-one-to-many-table-boolean
+                                               {% endif %}
+                                               {% if sonata_admin.field_description.associationadmin.formfielddescriptions[field_name] is not defined or
+                                                     sonata_admin.field_description.associationadmin.formfielddescriptions[field_name].type == 'integer' %}
+                                                     sonata-one-to-many-table-integer
+                                               {% endif %}">
+
+
                                                 <div class="row-fluid hidden-desktop visible-tablet visible-phone">
                                                     <div class="span12">
                                                         {% if field_name == '_delete' %}
