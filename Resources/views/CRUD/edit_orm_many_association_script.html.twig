@@ -21,7 +21,8 @@
         url_sonata_admin_short_object_information: '{{ url('sonata_admin_short_object_information', {
                                                             'objectId': 'OBJECT_ID',
                                                             'uniqid': associationadmin.uniqid,
-                                                            'code': associationadmin.code
+                                                            'code': associationadmin.code,
+                                                            'linkParameters': sonata_admin.field_description.options.link_parameters
                                                         })}}'.replace(/&amp;/g, '&'),
         url_ajax_loading: '{{ asset('bundles/sonataadmin/ajax-loader.gif') }}',
         ajax_loading_description: '{{ 'loading_information'|trans([], 'SonataAdminBundle') }}'
