@@ -1,4 +1,3 @@
-
 {% if not sonata_admin.field_description.hasassociationadmin%}
     {{ value|render_relation_element(sonata_admin.field_description) }}
 {% elseif sonata_admin.edit == 'inline' %}
@@ -7,64 +6,72 @@
     {% endfor %}
 {% else %}
     {% include 'RzDoctrineORMAdminBundle:CRUD:edit_orm_many_association_script.html.twig' %}
-    <div id="field_container_{{ id }}" class="field-container">
-        {% if sonata_admin.edit == 'list' %}
-            <span id="field_widget_{{ id }}" class="field-short-description">
-                {% if sonata_admin.field_description.associationadmin.id(sonata_admin.value) %}
-                    {% render url('sonata_admin_short_object_information',{
+    <div class="box box-color green box-small box-bordered sonata-ba-box-one-to-one">
+        <div class="box-title">
+            <h3><i class="icon-file-alt"></i><span class="rz-orm-otm-position"></span></h3>
+        </div>
+        <div class="box-content nopadding">
+            <div class="sonata-one-to-one-form">
+                <div id="field_container_{{ id }}" class="field-container">
+                    {% if sonata_admin.edit == 'list' %}
+                        <span id="field_widget_{{ id }}" class="field-short-description">
+                        {% if sonata_admin.field_description.associationadmin.id(sonata_admin.value) %}
+                            {% render url('sonata_admin_short_object_information',{
                             'code':     sonata_admin.field_description.associationadmin.code,
                             'objectId': sonata_admin.field_description.associationadmin.id(sonata_admin.value),
                             'uniqid':   sonata_admin.field_description.associationadmin.uniqid,
                             'linkParameters': sonata_admin.field_description.options.link_parameters
-                        }
-                    )%}
-                {% endif %}
-            </span>
-            <span style="display: none" >
-                {{ form_widget(form) }}
-            </span>
-        {% else %}
-            <span id="field_widget_{{ id }}" >
-                {{ form_widget(form) }}
-            </span>
-        {% endif %}
+                            }
+                            )%}
+                        {% endif %}
+                    </span>
+                        <span style="display: none" >
+                        {{ form_widget(form) }}
+                    </span>
+                    {% else %}
+                        <span id="field_widget_{{ id }}" >
+                        {{ form_widget(form) }}
+                    </span>
+                    {% endif %}
 
-        <span id="field_actions_{{ id }}" class="field-actions">
-            <span class="btn-group">
-                {% if sonata_admin.edit == 'list' and sonata_admin.field_description.associationadmin.hasroute('list') and sonata_admin.field_description.associationadmin.isGranted('LIST') and btn_delete %}
-                    <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('list', sonata_admin.field_description.getOption('link_parameters', {})) }}"
-                        onclick="return mtom_{{ id }}.startFieldDialogFormList(this);"
-                        class="btn sonata-ba-action"
-                        title="{{ 'link_list'|trans({}, 'SonataAdminBundle') }}"
-                        >
-                        <i class="icon-list"></i>
-                        {{ 'link_list'|trans({}, 'SonataAdminBundle') }}
-                    </a>
-                {% endif %}
+                    <span id="field_actions_{{ id }}" class="field-actions">
+                    <span class="btn-group">
+                        {% if sonata_admin.edit == 'list' and sonata_admin.field_description.associationadmin.hasroute('list') and sonata_admin.field_description.associationadmin.isGranted('LIST') and btn_delete %}
+                            <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('list', sonata_admin.field_description.getOption('link_parameters', {})) }}"
+                                onclick="return mtom_{{ id }}.startFieldDialogFormList(this);"
+                                class="btn sonata-ba-action"
+                                title="{{ 'link_list'|trans({}, 'SonataAdminBundle') }}"
+                                    >
+                                <i class="icon-list"></i>
+                                {{ 'link_list'|trans({}, 'SonataAdminBundle') }}
+                            </a>
+                        {% endif %}
 
-                {% if sonata_admin.edit != 'admin' and sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') and btn_add %}
-                    <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('create', sonata_admin.field_description.getOption('link_parameters', {})) }}"
-                        onclick="return mtom_{{ id }}.startFieldDialogFormAdd(this);"
-                        class="btn sonata-ba-action"
-                        title="{{ 'link_add'|trans({}, 'SonataAdminBundle') }}"
-                        >
-                        <i class="icon-plus"></i>
-                        {{ 'link_add'|trans({}, 'SonataAdminBundle') }}
-                    </a>
-                {% endif %}
-            </span>
+                        {% if sonata_admin.edit != 'admin' and sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') and btn_add %}
+                            <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('create', sonata_admin.field_description.getOption('link_parameters', {})) }}"
+                                onclick="return mtom_{{ id }}.startFieldDialogFormAdd(this);"
+                                class="btn sonata-ba-action"
+                                title="{{ 'link_add'|trans({}, 'SonataAdminBundle') }}"
+                                    >
+                                <i class="icon-plus"></i>
+                                {{ 'link_add'|trans({}, 'SonataAdminBundle') }}
+                            </a>
+                        {% endif %}
+                    </span>
 
-            {% if sonata_admin.edit == 'list' and sonata_admin.field_description.associationadmin.hasRoute('list') and sonata_admin.field_description.associationadmin.isGranted('LIST') and btn_delete %}
-                <a  href=""
-                    onclick="return mtom_{{ id }}.removeSelectedElement(this);"
-                    class="btn sonata-ba-action"
-                    title="{{ 'link_delete'|trans({}, 'SonataAdminBundle') }}"
-                    >
-                    <i class="icon-off"></i>
-                    {{ 'link_delete'|trans({}, 'SonataAdminBundle') }}
-                </a>
-            {% endif %}
-        </span>
+                        {% if sonata_admin.edit == 'list' and sonata_admin.field_description.associationadmin.hasRoute('list') and sonata_admin.field_description.associationadmin.isGranted('LIST') and btn_delete %}
+                            <a  href=""
+                                onclick="return mtom_{{ id }}.removeSelectedElement(this);"
+                                class="btn sonata-ba-action"
+                                title="{{ 'link_delete'|trans({}, 'SonataAdminBundle') }}"
+                                    >
+                                <i class="icon-off"></i>
+                                {{ 'link_delete'|trans({}, 'SonataAdminBundle') }}
+                            </a>
+                        {% endif %}
+                </span>
+                </div>
+            </div>
         </div>
     </div>
 {% endif %}
