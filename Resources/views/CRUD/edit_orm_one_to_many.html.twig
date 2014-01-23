@@ -43,8 +43,6 @@
                                                      sonata_admin.field_description.associationadmin.formfielddescriptions[field_name].type == 'integer' %}
                                                      sonata-one-to-many-table-integer
                                                {% endif %}">
-
-
                                                 <div class="hidden-desktop visible-tablet visible-phone rz-one-to-many-table-row-label">
                                                     <div class="rz-one-to-many-table-span-label">
                                                         {% if field_name == '_delete' %}
@@ -115,7 +113,6 @@
         </div>
 
         {% if sonata_admin.edit == 'inline' %}
-
             {# include association code #}
             {% include 'RzDoctrineORMAdminBundle:CRUD:edit_orm_one_association_script.html.twig' %}
 
