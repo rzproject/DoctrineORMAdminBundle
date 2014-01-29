@@ -245,6 +245,8 @@ rzadmin_many_assoc.prototype = {
 
         this.initializePopup();
 
+        this.attachListeners();
+
         /* add the jQuery event to the a element */
         jQuery(link).on('click', { ref: this }, this.fieldDialogFormAdd)
                     .trigger('click')
