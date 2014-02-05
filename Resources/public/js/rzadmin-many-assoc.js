@@ -262,8 +262,6 @@ rzadmin_many_assoc.prototype = {
         event.preventDefault();
         event.stopPropagation();
 
-        jQuery.blockUI({ message:self.admin.loadingMessage(null)});
-
         self.admin.log(sprintf('[%s|fieldDialogFormAction] action catch', self.id), this);
 
         self.initializePopup();
@@ -287,6 +285,8 @@ rzadmin_many_assoc.prototype = {
             self.admin.log(sprintf('[%s|fieldDialogFormAction] reserved action stop catch all events', self.id));
             return;
         }
+
+        jQuery.blockUI({ message:self.admin.loadingMessage(null)});
 
         var data = {_xml_http_request: true}
         var form = jQuery(this);
