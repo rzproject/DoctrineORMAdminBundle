@@ -375,7 +375,7 @@ rzadmin_many_assoc.prototype = {
                 self.admin.log(sprintf('[%s|fieldDialogFormAction] reatttach events', self.id));
                 /* reattach the event */
                 jQuery('a:not([data-toggle="tab"],[data-toggle="pill"],[class*="fileupload-exists"])',self.field_dialog).on('click', {ref:self}, self.fieldDialogFormAction);
-                jQuery('form',this.field_dialog).on('submit', { ref:self }, self.fieldDialogFormAction);
+                jQuery('form',self.field_dialog).on('submit', { ref:self }, self.fieldDialogFormAction);
                 self.admin.initElements(jQuery(self.field_dialog));
                 return false;
             }
