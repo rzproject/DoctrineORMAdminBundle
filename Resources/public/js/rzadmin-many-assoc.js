@@ -354,6 +354,8 @@ rzadmin_many_assoc.prototype = {
                     return;
                 }
 
+                self.admin.log(sprintf('[%s|fieldDialogFormAction] ajax bypass checks', self.id));
+
                 /* otherwise, display form error */
                 self.field_dialog.html(data);
 
@@ -366,9 +368,14 @@ rzadmin_many_assoc.prototype = {
             },
             error: function(html) {
                 self.field_dialog.html(html.responseText);
+                self.admin.log(sprintf('[%s|fieldDialogFormAction] ajax error', self.id));
+
+                self.admin.addPrettyErrors(self.field_dialog);
+
+                self.admin.log(sprintf('[%s|fieldDialogFormAction] reatttach events', self.id));
                 /* reattach the event */
-                jQuery('a:not([data-toggle="tab"],[data-toggle="pill"],[class*="fileupload-exists"])',this.field_dialog).on('click', {ref:self}, self.fieldDialogFormAction);
-                jQuery('form',self.field_dialog).on('submit', {ref:self}, this.fieldDialogFormAction);
+                jQuery('a:not([data-toggle="tab"],[data-toggle="pill"],[class*="fileupload-exists"])',self.field_dialog).on('click', {ref:self}, self.fieldDialogFormAction);
+                jQuery('form',this.field_dialog).on('submit', { ref:self }, self.fieldDialogFormAction);
                 self.admin.initElements(jQuery(self.field_dialog));
                 return false;
             }
