@@ -62,6 +62,7 @@
                     </div>
                 </div>
 
+                {% if btn_add or btn_list or btn_delete %}
                 <div class="row-fluid">
                     <div class="span12">
                         <span class="btn-group">
@@ -100,6 +101,7 @@
                         </span>
                     </div>
                 </div>
+                {% endif %}
 
                 <span style="display: none" >{{ form_widget(form) }}</span>
                 {{ form_errors(form) }}

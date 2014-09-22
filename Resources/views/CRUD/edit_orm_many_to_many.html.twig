@@ -10,6 +10,7 @@
                     {% endif %}
                     {{ form_widget(form, { 'attr': {'class': attr_new} }) }}
                 </div>
+                {% if btn_add %}
                 <div id="field_actions_{{ id }}" class="row-fluid field-actions">
                     <div class="span12">
                     {% if sonata_admin.field_description.associationadmin.hasRoute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') and btn_add %}
@@ -25,6 +26,7 @@
                     {% endif %}
                     </div>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
