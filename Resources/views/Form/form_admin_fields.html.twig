@@ -142,21 +142,21 @@
 {% block form_errors %}
     {% spaceless %}
         {% if errors|length > 0 %}
+            <div class="row-fluid rz-field-error-messages-relations">
             {% if not form.parent  or 'repeated' in form.vars['block_prefixes'] %}
-            <div class="row-fluid">
-                <div class="control-group error">
-                {% endif %}
-                    <span class="help-block error">
+                <div class="control-group {% if errors|length > 0%} error{%endif%}" id="sonata-ba-field-container-{{ id }}-{{ key }}">
+            {% endif %}
+                    <div class="help-inline sonata-ba-field-error-messages rz-field-error-messages">
                     {% for error in errors %}
                         {% if loop.first %}
                             {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}
                         {% endif %}
                     {% endfor %}
-                    </span>
-                {% if not form.parent  or 'repeated' in form.vars['block_prefixes'] %}
+                    </div>
+            {% if not form.parent  or 'repeated' in form.vars['block_prefixes'] %}
                 </div>
-            </div>
             {% endif %}
+            </div>
         {% endif %}
     {% endspaceless %}
 {% endblock form_errors %}
