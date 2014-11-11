@@ -1,4 +1,4 @@
-{% extends 'RzAdminBundle:Form:form_admin_fields.html.twig' %}
+{% extends 'SonataAdminBundle:Form:form_admin_fields.html.twig' %}
 
 
 {# Custom Sonata Admin Extension #}
@@ -62,10 +62,11 @@
                     </div>
                 </div>
 
+                {% if btn_add or btn_list or btn_delete %}
                 <div class="row-fluid">
                     <div class="span12">
                         <span class="btn-group">
-                            {% if sonata_admin.field_description.associationadmin.hasroute('list') and sonata_admin.field_description.associationadmin.isGranted('LIST') %}
+                            {% if sonata_admin.field_description.associationadmin.hasroute('list') and sonata_admin.field_description.associationadmin.isGranted('LIST') and btn_list %}
                                 <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('list') }}"
                                     onclick="return mtom_{{ id }}.startFieldDialogFormList(this);"
                                     class="btn sonata-ba-action btn-success"
@@ -76,7 +77,7 @@
                                 </a>
                             {% endif %}
 
-                            {% if sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') %}
+                            {% if sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') and btn_add %}
                                 <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('create') }}"
                                     onclick="return  mtom_{{ id }}.startFieldDialogFormAdd(this);"
                                     class="btn sonata-ba-action btn-success"
@@ -86,7 +87,7 @@
                                     <span class="hidden-phone hidden-tablet visible-desktop"> {{ 'link_add'|trans({}, 'SonataAdminBundle') }}</span>
                                 </a>
                             {% endif %}
-                            {% if sonata_admin.field_description.associationadmin.hasRoute('delete') and sonata_admin.field_description.associationadmin.isGranted('DELETE') %}
+                            {% if sonata_admin.field_description.associationadmin.hasRoute('delete') and sonata_admin.field_description.associationadmin.isGranted('DELETE') and btn_delete %}
                                 <a  href="#"
                                     onclick="return mtom_{{ id }}.removeSelectedElement(this);"
                                     class="btn sonata-ba-action btn-success"
@@ -100,8 +101,10 @@
                         </span>
                     </div>
                 </div>
+                {% endif %}
 
                 <span style="display: none" >{{ form_widget(form) }}</span>
+                {{ form_errors(form) }}
             </div>
         </div>
         <div class="modal hide fade  sonata-ba-modal sonata-ba-modal-edit-one-to-one" data-backdrop="static" id="field_dialog_{{ id }}" aria-hidden="false"></div>
@@ -134,3 +137,26 @@
         INVALID MODE : {{ id }} - type : sonata_type_collection - mapping : {{ sonata_admin.field_description.mappingtype }}
     {% endif %}
 {% endblock %}
+
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            <div class="row-fluid rz-field-error-messages-relations">
+            {% if not form.parent  or 'repeated' in form.vars['block_prefixes'] %}
+                <div class="control-group {% if errors|length > 0%} error{%endif%}" id="sonata-ba-field-container-{{ id }}-{{ key }}">
+            {% endif %}
+                    <div class="help-inline sonata-ba-field-error-messages rz-field-error-messages">
+                    {% for error in errors %}
+                        {% if loop.first %}
+                            {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+            {% if not form.parent  or 'repeated' in form.vars['block_prefixes'] %}
+                </div>
+            {% endif %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}

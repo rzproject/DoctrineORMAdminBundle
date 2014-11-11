@@ -64,7 +64,7 @@ rzadmin_many_assoc.prototype = {
                self.admin.initElements(jQuery(self.field_dialog));
                /* capture the submit event to make an ajax call, ie : POST data to the
                  related create admin */
-                jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"], [class*="fileupload-exists"], ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a',self.field_dialog).on('click',{ ref:self},self.fieldDialogFormListLink);
+                jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"], [class*="fileupload-exists"], ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a, ul.dropdown-menu li > a',self.field_dialog).on('click',{ ref:self},self.fieldDialogFormListLink);
                 jQuery('form, a:not([class*="rz-admin-filter-reset-button"])',self.field_dialog).on('submit', {ref:self}, self.fieldDialogFormListFilter);
             })
             .fail(function(jqXHR, textStatus, errorThrown){
@@ -106,7 +106,7 @@ rzadmin_many_assoc.prototype = {
                self.admin.initElements(jQuery(self.field_dialog));
                 /* capture the submit event to make an ajax call, ie : POST data to the
                     related create admin */
-                jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"], [class*="fileupload-exists"], ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a',self.field_dialog).on('click', {ref:self}, self.fieldDialogFormListLink);
+                jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"], [class*="fileupload-exists"], ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a, ul.dropdown-menu li > a',self.field_dialog).on('click', {ref:self}, self.fieldDialogFormListLink);
                 jQuery('form, a:not([class*="rz-admin-filter-reset-button"])',self.field_dialog).on('submit', {ref:self}, self.fieldDialogFormListFilter);
             }
         });
@@ -141,7 +141,7 @@ rzadmin_many_assoc.prototype = {
             self.field_dialog.html(html);
             /* capture the submit event to make an ajax call, ie : POST data to the
                 related create admin */
-            jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"],  [class*="fileupload-exists"],  ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a',self.field_dialog).on('click', {ref:self}, self.fieldDialogFormListLink);
+            jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"],  [class*="fileupload-exists"],  ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a, ul.dropdown-menu li > a',self.field_dialog).on('click', {ref:self}, self.fieldDialogFormListLink);
             jQuery('form, a:not([class*="rz-admin-filter-reset-button"])',self.field_dialog).on('submit', {ref:self}, self.fieldDialogFormListFilter);
 
             /* open the dialog in modal mode */
@@ -154,7 +154,7 @@ rzadmin_many_assoc.prototype = {
                 } else {
                     self.admin.log(sprintf('[%s|fieldDialogFormList] modal hidden - removing `on` events', self.id));
                     /* make sure we have a clean state */
-                    jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"],  [class*="fileupload-exists"], ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a', jQuery(this)).off('click');
+                    jQuery('a:not([class*="admin-ajax-ignore-event"], [class*="admin-ajax-ignore-tabbable"],  [class*="fileupload-exists"], ul.dropdown-menu li > a), a[class*="rz-admin-filter-reset-button"], ul.tabdrop li > a, ul.dropdown-menu li > a', jQuery(this)).off('click');
                     jQuery('form, a:not([class*="rz-admin-filter-reset-button"])', jQuery(this)).off('submit');
                     jQuery(this).empty();
                     self.field_dialog = null;

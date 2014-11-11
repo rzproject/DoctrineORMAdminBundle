@@ -34,6 +34,7 @@
             {% endif %}
             </div>
         </div>
+        {% if btn_add or btn_list or btn_delete %}
         <div class="row-fluid">
             <div {% if container_span is not null %} class="{{ container_span }}"{% endif %}>
                 <span id="field_actions_{{ id }}" class="field-actions">
@@ -77,5 +78,6 @@
                 </span>
             </div>
         </div>
+        {% endif %}
     </div>
 {% endif %}

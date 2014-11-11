@@ -58,11 +58,6 @@
                                                 {% else %}
                                                    {{ form_widget(nested_field) }}
                                                 {% endif %}
-                                                {% if nested_field.vars.errors|length > 0 %}
-                                                    <div class="sonata-ba-field-error-messages rz-field-error-messages">
-                                                        {{ form_errors(nested_field) }}
-                                                    </div>
-                                                {% endif %}
                                             </td>
                                         {% endfor %}
                                     </tr>
