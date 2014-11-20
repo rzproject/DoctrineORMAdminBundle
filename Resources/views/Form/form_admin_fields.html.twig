@@ -144,7 +144,7 @@
         {% if errors|length > 0 %}
             <div class="row-fluid rz-field-error-messages-relations">
             {% if not form.parent  or 'repeated' in form.vars['block_prefixes'] %}
-                <div class="control-group {% if errors|length > 0%} error{%endif%}" id="sonata-ba-field-container-{{ id }}-{{ key }}">
+                <div class="control-group {% if errors|length > 0%} error{%endif%}" id="sonata-ba-field-container-{{ id }}">
             {% endif %}
                     <div class="help-inline sonata-ba-field-error-messages rz-field-error-messages">
                     {% for error in errors %}
