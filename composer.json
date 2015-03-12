@@ -14,15 +14,15 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "rmzamora/doctrine-orm-admin-bundle": "2.3.*",
-        "rz/admin-bundle": "1.0.*"
+        "rmzamora/doctrine-orm-admin-bundle": "2.4.*",
+        "rz/admin-bundle": "1.1.*"
     },
     "autoload": {
         "psr-4": { "Rz\\DoctrineORMAdminBundle\\": "" }
     },
     "extra": {
         "branch-alias": {
-            "dev-1.0": "1.0.x-dev"
+            "dev-1.1": "1.1.x-dev"
         }
     }
 }
