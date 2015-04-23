@@ -67,7 +67,7 @@
                     <div class="span12">
                         <span class="btn-group">
                             {% if sonata_admin.field_description.associationadmin.hasroute('list') and sonata_admin.field_description.associationadmin.isGranted('LIST') and btn_list %}
-                                <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('list') }}"
+                                <a  href="{{ sonata_admin.field_description.associationadmin.generateUrl('list', sonata_admin.field_description.getOption('link_parameters', {})) }}"
                                     onclick="return mtom_{{ id }}.startFieldDialogFormList(this);"
                                     class="btn sonata-ba-action btn-success"
                                     title="{{ 'link_list'|trans({}, 'SonataAdminBundle') }}"
