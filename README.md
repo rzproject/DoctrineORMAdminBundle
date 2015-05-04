@@ -5,5 +5,5 @@ Symfony2 Bundle - An extension of [SonataDoctrineORMAdminBundle](https://github.
 
 Uses a forked version of DoctrineORMAdminBundle
 
-**STABLE VERSION**
+**DEPRECATED**
 
