@@ -1,19 +1,9 @@
 <?php
 
-/*
- * This file is part of the RzDoctrineORMAdminBundle package.
- *
- * (c) mell m. zamora <mell@rzproject.org>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Rz\DoctrineORMAdminBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
-use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 /**
  * This is the class that validates and merges configuration from your app/config files
@@ -23,54 +13,17 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 class Configuration implements ConfigurationInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('rz_doctrine_orm_admin');
-        $this->addAdminTemplates($rootNode);
+
+        // Here you should define the parameters that are allowed to
+        // configure your bundle. See the documentation linked above for
+        // more information on that topic.
 
         return $treeBuilder;
     }
-
-    /**
-     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
-     *
-     * @return void
-     */
-    private function addAdminTemplates(ArrayNodeDefinition $node)
-    {
-        $node
-            ->children()
-                ->scalarNode('entity_manager')->defaultNull()->end()
-                ->arrayNode('templates')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->arrayNode('form')
-                            ->prototype('scalar')->end()
-                            ->defaultValue(array('SonataDoctrineORMAdminBundle:Form:form_admin_fields.html.twig'))
-                        ->end()
-                        ->arrayNode('filter')
-                            ->prototype('scalar')->end()
-                            ->defaultValue(array('SonataDoctrineORMAdminBundle:Form:filter_admin_fields.html.twig'))
-                        ->end()
-                        ->arrayNode('types')
-                            ->children()
-                                ->arrayNode('list')
-                                    ->useAttributeAsKey('name')
-                                    ->prototype('scalar')->end()
-                                ->end()
-                                ->arrayNode('show')
-                                    ->useAttributeAsKey('name')
-                                    ->prototype('scalar')->end()
-                                ->end()
-                            ->end()
-                        ->end()
-                    ->end()
-                ->end()
-            ->end()
-        ;
-    }
-
 }
