@@ -79,18 +79,20 @@
 		                                        <div class="tab-pane {% if loop.first %}active{% endif %}" id="{{ associationAdmin.uniqid }}_{{ loop.parent.loop.index }}_{{ loop.index }}">
 		                                            <fieldset>
 		                                                <div class="sonata-ba-collapsed-fields">
-		                                                    {% for field_name in form_group.fields %}
-		                                                        {% set nested_field = nested_group_field.children[field_name] %}
-		                                                        {% if associationAdmin.formfielddescriptions[field_name] is defined %}
-		                                                            {{ form_row(nested_field, {
-		                                                                'inline': 'natural',
-		                                                                'edit'  : 'inline'
-		                                                            }) }}
-		                                                            {% set dummy = nested_group_field.setrendered %}
-		                                                        {% else %}
-		                                                            {{ form_row(nested_field) }}
-		                                                        {% endif %}
-		                                                    {% endfor %}
+			                                                {% for field_name in form_group.fields %}
+				                                                {% set nested_field = nested_group_field.children[field_name] %}
+				                                                <div class="sonata-ba-field-{{ id }}-{{ field_name }}">
+					                                                {% if associationAdmin.formfielddescriptions[field_name] is defined %}
+						                                                {{ form_row(nested_field, {
+							                                                'inline': 'natural',
+							                                                'edit'  : 'inline'
+						                                                }) }}
+						                                                {% set dummy = nested_group_field.setrendered %}
+					                                                {% else %}
+						                                                {{ form_row(nested_field) }}
+					                                                {% endif %}
+				                                                </div>
+			                                                {% endfor %}
 		                                                </div>
 		                                            </fieldset>
 		                                        </div>
@@ -126,40 +128,74 @@
                 </span>
             {% endif %}
 
-            {# add code for the sortable options #}
-            {% if sonata_admin.field_description.options.sortable is defined %}
-                <script type="text/javascript">
-                    jQuery('div#field_container_{{ id }} tbody.sonata-ba-tbody').sortable({
-                        axis: 'y',
-                        opacity: 0.6,
-                        items: '> tr',
-                        stop: apply_position_value_{{ id }}
-                    });
+	        {# add code for the sortable options #}
+	        {% if sonata_admin.field_description.options.sortable is defined %}
+		        <script type="text/javascript">
+			        {% if sonata_admin.inline == 'table' %}
+			        jQuery('div#field_container_{{ id }} tbody.sonata-ba-tbody').sortable({
+				        axis: 'y',
+				        opacity: 0.6,
+				        items: '> tr',
+				        stop: apply_position_value_{{ id }}
+			        });
 
-                    function apply_position_value_{{ id }}() {
-                        // update the input value position
-                        jQuery('div#field_container_{{ id }} tbody.sonata-ba-tbody td.sonata-ba-td-{{ id }}-{{ sonata_admin.field_description.options.sortable }}').each(function(index, element) {
-                            // remove the sortable handler and put it back
-                            jQuery('span.sonata-ba-sortable-handler', element).remove();
-                            jQuery(element).append('<span class="sonata-ba-sortable-handler ui-icon ui-icon-grip-solid-horizontal"></span>');
-                            jQuery('input', element).hide();
-                        });
+			        function apply_position_value_{{ id }}() {
+				        // update the input value position
+				        jQuery('div#field_container_{{ id }} tbody.sonata-ba-tbody td.sonata-ba-td-{{ id }}-{{ sonata_admin.field_description.options.sortable }}').each(function(index, element) {
+					        // remove the sortable handler and put it back
+					        jQuery('span.sonata-ba-sortable-handler', element).remove();
+					        jQuery(element).append('<span class="sonata-ba-sortable-handler ui-icon ui-icon-grip-solid-horizontal"></span>');
+					        jQuery('input', element).hide();
+				        });
 
-                        jQuery('div#field_container_{{ id }} tbody.sonata-ba-tbody td.sonata-ba-td-{{ id }}-{{ sonata_admin.field_description.options.sortable }} input').each(function(index, value) {
-                            jQuery(value).val(index + 1);
-                        });
-                    }
+				        jQuery('div#field_container_{{ id }} tbody.sonata-ba-tbody td.sonata-ba-td-{{ id }}-{{ sonata_admin.field_description.options.sortable }} input').each(function(index, value) {
+					        jQuery(value).val(index + 1);
+				        });
+			        }
 
-                    // refresh the sortable option when a new element is added
-                    jQuery('#sonata-ba-field-container-{{ id }}').bind('sonata.add_element', function() {
-                        apply_position_value_{{ id }}();
-                        jQuery('div#field_container_{{ id }} tbody.sonata-ba-tbody').sortable('refresh');
-                    });
+			        // refresh the sortable option when a new element is added
+			        jQuery('#sonata-ba-field-container-{{ id }}').bind('sonata.add_element', function() {
+				        apply_position_value_{{ id }}();
+				        jQuery('div#field_container_{{ id }} tbody.sonata-ba-tbody').sortable('refresh');
+			        });
 
-                    apply_position_value_{{ id }}();
+			        apply_position_value_{{ id }}();
+			        {% else %}
+			        jQuery('div#field_container_{{ id }} .sonata-ba-tabs').sortable({
+				        axis: 'y',
+				        opacity: 0.6,
+				        items: '> div',
+				        stop: apply_position_value_{{ id }}
+			        });
 
-                </script>
-            {% endif %}
+			        function apply_position_value_{{ id }}() {
+				        // update the input value position
+				        jQuery('div#field_container_{{ id }} .sonata-ba-tabs .sonata-ba-field-{{ id }}-{{ sonata_admin.field_description.options.sortable }}').each(function(index, element) {
+					        // remove the sortable handler and put it back
+					        var parent = jQuery(element).closest('.nav-tabs-custom');
+					        var tabs = parent.find('> .nav-tabs');
+					        jQuery('.sonata-ba-sortable-handler', tabs).remove();
+					        $('<li class="sonata-ba-sortable-handler pull-right"></li>')
+							        .prepend('<span class="ui-icon ui-icon-grip-solid-horizontal"></span>')
+							        .appendTo(tabs);
+					        jQuery('input', element).hide();
+				        });
+
+				        jQuery('div#field_container_{{ id }} .sonata-ba-tabs .sonata-ba-field-{{ id }}-{{ sonata_admin.field_description.options.sortable }} input').each(function(index, value) {
+					        jQuery(value).val(index + 1);
+				        });
+			        }
+
+			        // refresh the sortable option when a new element is added
+			        jQuery('#sonata-ba-field-container-{{ id }}').bind('sonata.add_element', function() {
+				        apply_position_value_{{ id }}();
+				        jQuery('div#field_container_{{ id }} .sonata-ba-tabs').sortable('refresh');
+			        });
+
+			        apply_position_value_{{ id }}();
+			        {% endif %}
+		        </script>
+	        {% endif %}
 
             {# include association code #}
             {% include 'RzDoctrineORMAdminBundle:CRUD:edit_orm_one_association_script.html.twig' %}
