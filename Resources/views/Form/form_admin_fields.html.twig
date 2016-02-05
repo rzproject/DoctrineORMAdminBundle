@@ -125,10 +125,8 @@
     {% if sonata_admin.field_description.mappingtype == constant('Doctrine\\ORM\\Mapping\\ClassMetadataInfo::ONE_TO_ONE') %}
         {{ block('sonata_admin_orm_one_to_one_widget') }}
     {% elseif sonata_admin.field_description.mappingtype == constant('Doctrine\\ORM\\Mapping\\ClassMetadataInfo::MANY_TO_ONE') %}
-	    <h1>rommel</h1>
         {{ block('sonata_admin_orm_many_to_one_widget') }}
     {% elseif sonata_admin.field_description.mappingtype == constant('Doctrine\\ORM\\Mapping\\ClassMetadataInfo::MANY_TO_MANY') %}
-        <h1>rommel</h1>
         {{ block('sonata_admin_orm_many_to_many_widget') }}
     {% elseif sonata_admin.field_description.mappingtype == constant('Doctrine\\ORM\\Mapping\\ClassMetadataInfo::ONE_TO_MANY') %}
         {{ block('sonata_admin_orm_one_to_many_widget') }}
