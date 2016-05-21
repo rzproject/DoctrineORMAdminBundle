@@ -69,8 +69,7 @@
 			                    <div class="box-header">
 				                    <h4 class="box-title"><i class="fa fa-fw fa-file-text-o"></i>{% if header_name %}{{ associationAdmin.trans(header_name, {}, associationAdmin.translationDomain) ~ ' ' ~ loop.index }}{% endif %}</h4>
 				                    <div class="box-tools pull-right">
-					                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-					                    </button>
+					                    <button type="button" class="btn btn-box-tool" data-widget="collapse">{% if has_data %}<i class="fa fa-plus"></i>{% else %}<i class="fa fa-minus"></i>{% endif %}</button>
 				                    </div>
 			                    </div>
 			                    <div class="box-body">
